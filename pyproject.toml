@@ -38,3 +38,11 @@ extend-exclude = '''
 profile = "black"
 line_length = 120
 skip = [".venv", ".cache", ".mypy_cache", ".pytest_cache"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--junitxml=junit.xml --cov --cov-report=term --cov-report=xml"
+
+[tool.coverage.run]
+branch = true
+source = ["repcon"]
