@@ -26,13 +26,13 @@ lint-flake8: ## Lint python files by flake8
 	poetry run flake8 .
 
 lint-mypy: ## Lint python files by mypy
-	poetry run mypy .
+	poetry run mypy --no-error-summary --pretty .
 
 lint-black: ## Check the format of python files by black
-	poetry run black --check --diff --color .
+	poetry run black --quiet --check --diff --color .
 
 lint-isort: ## Lint import orders in python files by isort
-	poetry run isort --check --diff --color .
+	poetry run isort --quiet --check --diff --color .
 
 format: format-black format-isort ## Format all files
 
