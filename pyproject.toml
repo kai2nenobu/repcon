@@ -18,3 +18,23 @@ flake8 = "^4.0.1"
 mypy = "^0.910"
 black = "^21.10b0"
 isort = {extras = ["colors", "pyproject"], version = "^5.10.0"}
+
+[tool.mypy]
+python_version = 3.6
+exclude = "(.venv|.cache|.mypy_cache|.pytest_cache)/"
+
+[tool.black]
+line-length = 120
+extend-exclude = '''
+(
+    .venv
+    |.cache
+    |.mypy_cache
+    |.pytest_cache
+)
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 120
+skip = [".venv", ".cache", ".mypy_cache", ".pytest_cache"]
