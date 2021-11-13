@@ -1,0 +1,16 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "repcon"
+version = "0.0.1"
+description = "Report Converter"
+authors = ["Tsunenobu Kai <kai2nenobu@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0"
+pytest-cov = "^3.0.0"
