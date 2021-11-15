@@ -18,9 +18,10 @@ def test_conversion():
     assert (
         actual
         == """\
+<?xml version="1.0" encoding="utf-8"?>
 <testExecutions version="1">
   <file path="tests/test_repcon.py">
-    <testCase name="test_example" duration="5" />
+    <testCase name="test_example" duration="5"/>
   </file>
 </testExecutions>
 """
