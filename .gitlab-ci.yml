@@ -59,6 +59,6 @@ sonarqube-scan:
     paths:
       - .sonar/cache
   script:
-    - sonar-scanner -Dsonar.projectVersion="$(git describe --dirty=+)"
+    - make scan
   allow_failure: true
   when: always
