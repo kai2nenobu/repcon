@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testExecutions version="1">
+    <file path="tests/test_repcon.py">
+        <testCase duration="5" name="test_example"/>
+    </file>
+</testExecutions>
