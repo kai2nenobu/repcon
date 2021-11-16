@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testExecutions version="1">
+    <file path="tests/test_sample.py">
+        <testCase duration="12" name="test_example"/>
+        <testCase duration="105" name="test_skipped">
+            <skipped message="unconditional skip">/path/to/project/tests/test_sample.py:8: unconditional skip</skipped>
+        </testCase>
+        <testCase duration="142" name="test_failure">
+            <failure message="assert 1 == 2">def test_failure():
+&gt;       assert 1 == 2
+E       assert 1 == 2
+
+tests/test_sample.py:14: AssertionError</failure>
+        </testCase>
+    </file>
+</testExecutions>

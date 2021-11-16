@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+    <testsuite errors="0" failures="1" name="pytest" skipped="1" tests="3" time="0.521">
+        <testcase classname="tests.test_sample" name="test_example" time="0.012" />
+        <testcase classname="tests.test_sample" name="test_skipped" time="0.105">
+            <skipped message="unconditional skip" type="pytest.skip">/path/to/project/tests/test_sample.py:8: unconditional skip</skipped>
+        </testcase>
+        <testcase classname="tests.test_sample" name="test_failure" time="0.142">
+            <failure message="assert 1 == 2">def test_failure():
+&gt;       assert 1 == 2
+E       assert 1 == 2
+
+tests/test_sample.py:14: AssertionError</failure>
+        </testcase>
+    </testsuite>
+</testsuites>
