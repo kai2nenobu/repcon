@@ -129,3 +129,4 @@ dmypy.json
 .scannerwork/
 sonar-login.txt
 junit.xml
+sonar_report.xml

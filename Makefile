@@ -42,15 +42,17 @@ format-black: ## Format python files by black
 format-isort: ## Sort import orders in python files by isort
 	poetry run isort .
 
-test: ## Unit test by pytest
+test: junit.xml ## Unit test by pytest
+
+junit.xml:
 	poetry run pytest -v
 
-scan: test ## Scan by sonar-scanner
-ifdef SONAR_LOGIN
+# Convert a JUnit test report into Sonar Generic Execution report
+sonar_report.xml: junit.xml
+	poetry run repcon junit.xml sonar_report.xml
+
+scan: sonar_report.xml  ## Scan by sonar-scanner
 	sonar-scanner -Dsonar.projectVersion=$(GIT_DESCRIBE)
-else
-	sonar-scanner -Dsonar.login=$$(cat sonar-login.txt) -Dsonar.projectVersion=$(GIT_DESCRIBE)
-endif
 
 clean: ## Clean up generated files
 	@$(RM) -r coverage.xml .pytest_cache .scannerwork
