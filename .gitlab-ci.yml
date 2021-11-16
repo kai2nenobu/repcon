@@ -33,7 +33,7 @@ test:
   script:
     - make test
   after_script:
-    - make sonar-execution.xml
+    - make sonar_report.xml
   artifacts:
     when: always
     reports:
@@ -41,7 +41,7 @@ test:
       cobertura: coverage.xml
     name: "test_result_${PYTHON_VERSION}"
     paths:
-      - sonar-execution.xml
+      - sonar_report.xml
       - coverage.xml
   coverage: '/^TOTAL.+?(\d+\%)$/'
 
