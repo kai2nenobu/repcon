@@ -52,8 +52,5 @@ junit.xml: $(TEST_FILES)
 sonar_report.xml: junit.xml
 	poetry run repcon junit.xml -o sonar_report.xml
 
-scan: sonar_report.xml  ## Scan by sonar-scanner
-	sonar-scanner -Dsonar.projectVersion=$(GIT_DESCRIBE)
-
 clean: ## Clean up generated files
 	@$(RM) -r coverage.xml .pytest_cache .scannerwork
