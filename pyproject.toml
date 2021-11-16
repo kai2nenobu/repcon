@@ -19,6 +19,9 @@ mypy = "^0.910"
 black = "^21.10b0"
 isort = {extras = ["colors", "pyproject"], version = "^5.10.0"}
 
+[tool.poetry.scripts]
+repcon = 'repcon.cli:main'
+
 [tool.mypy]
 python_version = 3.6
 exclude = "(.venv|.cache|.mypy_cache|.pytest_cache)/"
