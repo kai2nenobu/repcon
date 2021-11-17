@@ -10,6 +10,7 @@ jobs:
   lint:
     runs-on: ubuntu-20.04
     env:
+      POETRY_HOME: "${{ github.workspace }}/.cache/poetry"
       POETRY_CACHE_DIR: "${{ github.workspace }}/.cache/pypoetry"
     steps:
     - uses: actions/checkout@v2
@@ -17,6 +18,7 @@ jobs:
       with:
         key: poetry-ubuntu-20.04-py3.6-${{ hashFiles('poetry.lock') }}
         path: |
+          .cache/poetry
           .cache/pypoetry
     - uses: actions/setup-python@v2
       with:
@@ -35,6 +37,7 @@ jobs:
         python: ['3.6', '3.7', '3.8', '3.9', '3.10']
     runs-on: ${{ matrix.os }}
     env:
+      POETRY_HOME: "${{ github.workspace }}/.cache/poetry"
       POETRY_CACHE_DIR: "${{ github.workspace }}/.cache/pypoetry"
     steps:
     - uses: actions/checkout@v2
@@ -42,6 +45,7 @@ jobs:
       with:
         key: poetry-${{ matrix.os }}-py${{ matrix.python }}-${{ hashFiles('poetry.lock') }}
         path: |
+          .cache/poetry
           .cache/pypoetry
     - uses: actions/setup-python@v2
       with:
