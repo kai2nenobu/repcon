@@ -19,3 +19,20 @@ jobs:
       run: poetry install
     - name: Lint
       run: make -k -j4 lint
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['ubuntu-20.04']
+        python: ['3.6', '3.7', '3.8', '3.9', '3.10']
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python }}
+    - uses: Gr1N/setup-poetry@v7
+    - name: Setup virtualenv
+      run: poetry install
+    - name: Lint
+      run: make test
