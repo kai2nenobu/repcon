@@ -19,9 +19,9 @@ def _main(argv: List[str]) -> int:
     args = parser.parse_args(argv)
     if args.help:
         parser.print_help()
-        return 0
-    input = args.infile.read()
-    args.out.write(convert(input))
+    else:
+        inreport = args.infile.read()
+        args.out.write(convert(inreport))
     return 0
 
 
