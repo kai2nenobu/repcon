@@ -1,3 +1,4 @@
+import argparse
 import sys
 from typing import List
 
@@ -5,13 +6,22 @@ from repcon import convert
 
 
 def _main(argv: List[str]) -> int:
-    if len(argv) < 1:
-        print("$ repcon <infile>")
-        return 1
-    infile = open(argv[0], mode="rt", encoding="utf-8")
-    outfile = open(argv[1], mode="wt", encoding="utf-8") if len(argv) > 1 else sys.stdout
-    input = infile.read()
-    outfile.write(convert(input))
+    parser = argparse.ArgumentParser(prog="repcon", add_help=False)
+    parser.add_argument("-h", "--help", action="store_true", help="Show this help message and exit.")
+    parser.add_argument("infile", nargs="?", type=argparse.FileType("rt", encoding="utf-8"), default=sys.stdin)
+    parser.add_argument(
+        "-o",
+        "--out",
+        type=argparse.FileType("wt", encoding="utf-8"),
+        default=sys.stdout,
+        help="Ouput file path. If not specified, output to stdout.",
+    )
+    args = parser.parse_args(argv)
+    if args.help:
+        parser.print_help()
+        return 0
+    input = args.infile.read()
+    args.out.write(convert(input))
     return 0
 
 
