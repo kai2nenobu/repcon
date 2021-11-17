@@ -40,3 +40,11 @@ def test_both_infile_and_outfile(tmp_path: Path, capsys):
     assert outfile.read_text() == read_fixture("sonar_generic2.xml")
     assert out == ""
     assert err == ""
+
+
+def test_unknown_arguments(capsys):
+    ret = cli._main(["--foo", "--bar"])
+    out, err = capsys.readouterr()
+    assert ret == 2
+    assert out == "unrecognized arguments: --foo --bar\n"
+    assert err == ""
