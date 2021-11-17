@@ -49,3 +49,6 @@ addopts = "--junitxml=junit.xml --cov --cov-report=term --cov-report=xml"
 [tool.coverage.run]
 branch = true
 source = ["repcon"]
+
+[tool.coverage.report]
+fail_under = 90
