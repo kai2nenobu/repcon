@@ -34,5 +34,5 @@ jobs:
     - uses: Gr1N/setup-poetry@v7
     - name: Setup virtualenv
       run: poetry install
-    - name: Lint
+    - name: Test
       run: make test
