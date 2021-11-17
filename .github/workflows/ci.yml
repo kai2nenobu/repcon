@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
       with:
-        key: poetry-${{ runner.os }}-py${{ matrix.python }}-${{ hashFiles('poetry.lock') }}
+        key: poetry-ubuntu-20.04-py3.6-${{ hashFiles('poetry.lock') }}
         path: |
           .cache/pypoetry
     - uses: actions/setup-python@v2
@@ -40,7 +40,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
       with:
-        key: poetry-${{ runner.os }}-py${{ matrix.python }}-${{ hashFiles('poetry.lock') }}
+        key: poetry-${{ matrix.os }}-py${{ matrix.python }}-${{ hashFiles('poetry.lock') }}
         path: |
           .cache/pypoetry
     - uses: actions/setup-python@v2
