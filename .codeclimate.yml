@@ -1,0 +1,8 @@
+version: "2"
+
+plugins:
+  sonar-python:
+    enabled: true
+
+exclude_patterns:
+- ".cache"
