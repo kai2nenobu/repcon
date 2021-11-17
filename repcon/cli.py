@@ -17,11 +17,11 @@ def _main(argv: List[str]) -> int:
     return 0
 
 
-def main():
+def main():  # pragma: no cover
     import sys
 
     sys.exit(_main(sys.argv[1:]))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()
