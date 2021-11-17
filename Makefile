@@ -50,7 +50,7 @@ junit.xml: $(TEST_FILES)
 
 # Convert a JUnit test report into Sonar Generic Execution report
 sonar_report.xml: junit.xml
-	poetry run repcon junit.xml sonar_report.xml
+	poetry run repcon junit.xml -o sonar_report.xml
 
 scan: sonar_report.xml  ## Scan by sonar-scanner
 	sonar-scanner -Dsonar.projectVersion=$(GIT_DESCRIBE)
