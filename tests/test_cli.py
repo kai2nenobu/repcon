@@ -1,11 +1,14 @@
 from pathlib import Path
 
+import pytest
+
 from repcon import cli
 from tests.helper import read_fixture
 
 
-def test_help(capsys):
-    ret = cli._main(["--help"])
+@pytest.mark.parametrize("opt", ["--help", "-h"])
+def test_help(capsys, opt):
+    ret = cli._main([opt])
     out, err = capsys.readouterr()
     assert ret == 0
     assert out.split("\n")[0].startswith("usage: repcon")
