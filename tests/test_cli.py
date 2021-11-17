@@ -15,6 +15,15 @@ def test_help(capsys, opt):
     assert err == ""
 
 
+@pytest.mark.parametrize("opt", ["--version", "-V"])
+def test_version(capsys, opt):
+    ret = cli._main([opt])
+    out, err = capsys.readouterr()
+    assert ret == 0
+    assert out == "0.0.1\n"
+    assert err == ""
+
+
 def test_only_infile_outputs_stdout(capsys):
     infile = Path("tests/fixtures/junit_report2.xml")
     cli._main([str(infile)])
