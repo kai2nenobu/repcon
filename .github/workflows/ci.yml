@@ -15,5 +15,7 @@ jobs:
       with:
         python-version: '3.6'
     - uses: Gr1N/setup-poetry@v7
+    - name: Setup virtualenv
+      run: poetry install
     - name: Lint
       run: make -k -j4 lint
