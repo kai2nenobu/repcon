@@ -44,7 +44,8 @@ format-isort: ## Sort import orders in python files by isort
 
 test: junit.xml ## Unit test by pytest
 
-junit.xml:
+TEST_FILES = $(shell find repcon tests/ -type f -name "*.py")
+junit.xml: $(TEST_FILES)
 	poetry run pytest -v
 
 # Convert a JUnit test report into Sonar Generic Execution report
