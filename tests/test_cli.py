@@ -20,7 +20,7 @@ def test_version(capsys, opt):
     ret = cli._main([opt])
     out, err = capsys.readouterr()
     assert ret == 0
-    assert out == "0.0.2\n"
+    assert out == "0.0.3\n"
     assert err == ""
 
 
