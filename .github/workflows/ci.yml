@@ -3,6 +3,7 @@ name: CI
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   pull_request:
     branches: [main]
 
@@ -64,6 +65,9 @@ jobs:
           name: test-result-ubuntu-20.04-py3.6
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.version=${{ (github.event_name == 'tags' && github.ref_name) || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
