@@ -60,7 +60,7 @@ sonarqube-scan:
     paths:
       - .sonar/cache
   script:
-    - sonar-scanner -Dsonar.projectVersion="$(git describe --dirty=+)"
+    - sonar-scanner -Dproject.settings=sonar-private.properties -Dsonar.projectVersion="$(git describe --dirty=+)"
   allow_failure: true
   when: always
 
