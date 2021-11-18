@@ -20,7 +20,6 @@ jobs:
       - name: Lint
         run: make -k -j4 lint
   test:
-    needs: lint
     strategy:
       fail-fast: false
       matrix:
@@ -44,16 +43,12 @@ jobs:
         with:
           coverageLocations: ${{ github.workspace }}/coverage.xml:cobertura
         if: runner.os != 'Windows'
-      - name: Convert to sonar test report
-        run: make sonar_report.xml
-        if: always()
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
           name: test-result-${{ matrix.os }}-py${{ matrix.python }}
           path: |
             junit.xml
-            sonar_report.xml
             coverage.xml
   sonar-scan:
     runs-on: ubuntu-20.04
