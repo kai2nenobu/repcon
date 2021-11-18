@@ -14,3 +14,8 @@ def test_conversion():
 def test_conversion2():
     actual = convert(read_fixture("junit_report2.xml"), indent=4)
     assert actual == read_fixture("sonar_generic2.xml")
+
+
+def test_conversion_with_indent2():
+    actual = convert(read_fixture("junit_report2.xml"), indent=2)
+    assert actual == read_fixture("sonar_generic2_i2.xml")
