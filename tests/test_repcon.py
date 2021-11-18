@@ -1,3 +1,5 @@
+import pytest
+
 from repcon import __version__, convert
 from tests.helper import read_fixture
 
@@ -6,14 +8,16 @@ def test_version():
     assert __version__ == "0.0.3"
 
 
-def test_conversion():
-    actual = convert(read_fixture("junit_report.xml"), indent=4)
-    assert actual == read_fixture("sonar_generic.xml")
-
-
-def test_conversion2():
-    actual = convert(read_fixture("junit_report2.xml"), indent=4)
-    assert actual == read_fixture("sonar_generic2.xml")
+@pytest.mark.parametrize(
+    "infile,outfile",
+    [
+        ("junit_report.xml", "sonar_generic.xml"),
+        ("junit_report2.xml", "sonar_generic2.xml")
+    ]  # fmt: skip
+)
+def test_conversion(infile, outfile):
+    actual = convert(read_fixture(infile), indent=4)
+    assert actual == read_fixture(outfile)
 
 
 def test_conversion_with_indent2():
