@@ -66,6 +66,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: test-result-ubuntu-20.04-py3.6
+      - name: Check download artifacts
+        run: |
+          ls -alh
+          cat junit.xml sonar_report.xml coverage.xml
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
