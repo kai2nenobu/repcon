@@ -2,50 +2,56 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   lint:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.6'
-    - uses: Gr1N/setup-poetry@v7
-    - name: Setup virtualenv
-      run: poetry install
-    - name: Lint
-      run: make -k -j4 lint
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.6"
+      - uses: Gr1N/setup-poetry@v7
+      - name: Setup virtualenv
+        run: poetry install
+      - name: Lint
+        run: make -k -j4 lint
   test:
     needs: lint
     strategy:
       fail-fast: false
       matrix:
-        os: ['ubuntu-20.04', "windows-2019", "macos-10.15"]
-        python: ['3.6', '3.7', '3.8', '3.9', '3.10']
+        os: ["ubuntu-20.04", "windows-2019", "macos-10.15"]
+        python: ["3.6", "3.7", "3.8", "3.9", "3.10"]
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python }}
-    - uses: Gr1N/setup-poetry@v7
-    - name: Setup virtualenv
-      run: poetry install
-    - name: Test
-      run: make test
-    - name: Publish code coverage
-      uses: paambaati/codeclimate-action@v3.0.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        coverageLocations: ${{ github.workspace }}/coverage.xml:cobertura
-      if: runner.os != 'Windows'
-    - name: Publish Test Report
-      uses: mikepenz/action-junit-report@v2
-      if: always()
-      with:
-        report_paths: 'junit.xml' 
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: Gr1N/setup-poetry@v7
+      - name: Setup virtualenv
+        run: poetry install
+      - name: Test
+        run: make test
+      - name: Publish code coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageLocations: ${{ github.workspace }}/coverage.xml:cobertura
+        if: runner.os != 'Windows'
+      - name: Convert to sonar test report
+        run: make sonar_report.xml
+        if: always()
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        if: always()
