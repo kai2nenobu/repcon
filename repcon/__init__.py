@@ -3,7 +3,7 @@ from typing import List, Optional, cast
 from xml.dom import minidom
 from xml.etree import ElementTree as ET
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 
 
 class GenericTestResult:
