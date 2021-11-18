@@ -49,9 +49,25 @@ jobs:
       - name: Convert to sonar test report
         run: make sonar_report.xml
         if: always()
+      - name: Archive test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-result-${{ matrix.os }}-py${{ matrix.python }}
+          path: |
+            junit.xml
+            sonar_report.xml
+            coverage.xml
+  sonar-scan:
+    runs-on: ubuntu-20.04
+    needs: test
+    if: always()
+    steps:
+      - name: Download test results
+        uses: actions/download-artifact@v2
+        with:
+          name: test-result-ubuntu-20.04-py3.6
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        if: runner.os == 'Linux' && always()
