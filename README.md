@@ -1,6 +1,6 @@
 ![Python Version][python_version]
 [![Maintainability][cc_maint_badge]][cc_maint] [![Test Coverage][cc_cov_badge]][cc_cov]
-[![Maintainability Rating][sc_maint_badge]](sc_project_maint) [![Coverage][sc_coverage_badge]](sc_project_coverage) [![Quality gate][sc_quality_gate_badge]][sc_project_overview]
+[![Maintainability Rating][sc_maint_badge]][sc_project_maint] [![Coverage][sc_coverage_badge]][sc_project_coverage] [![Quality gate][sc_quality_gate_badge]][sc_project_overview]
 
 [python_version]: https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue
 [cc_maint_badge]: https://api.codeclimate.com/v1/badges/c13dfea917b777ee090c/maintainability
