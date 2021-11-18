@@ -11,7 +11,7 @@
 [sc_coverage_badge]: https://sonarcloud.io/api/project_badges/measure?project=kai2nenobu_repcon&metric=coverage
 [sc_quality_gate_badge]: https://sonarcloud.io/api/project_badges/quality_gate?project=kai2nenobu_repcon
 [sc_project_maint]: https://sonarcloud.io/component_measures?id=kai2nenobu_repcon&metric=Maintainability
-[sc_project_coverage]: https://sonarcloud.io/component_measures?id=kai2nenobu_repcon&metric=coverage&view=list
+[sc_project_coverage]: https://sonarcloud.io/component_measures?id=kai2nenobu_repcon&metric=Coverage
 [sc_project_overview]: https://sonarcloud.io/project/overview?id=kai2nenobu_repcon
 
 # repcon
