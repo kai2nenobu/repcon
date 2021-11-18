@@ -26,6 +26,7 @@ def _main(argv: List[str]) -> int:
     parser = NonExitArgumentParser(prog="repcon", description="Desc", add_help=False)
     parser.add_argument("-h", "--help", action="store_true", help="Show this help message and exit.")
     parser.add_argument("-V", "--version", action="store_true", help="Show the version of %(prog)s.")
+    parser.add_argument("-i", "--indent", type=int, default=4, help="Indentation level. Default: 4")
     parser.add_argument("infile", nargs="?", type=argparse.FileType("rt", encoding="utf-8"), default=sys.stdin)
     parser.add_argument(
         "-o",
@@ -42,7 +43,7 @@ def _main(argv: List[str]) -> int:
             _print_version()
         else:
             inreport = args.infile.read()
-            args.out.write(convert(inreport))
+            args.out.write(convert(inreport, indent=args.indent))
         return 0
     except argparse.ArgumentError as e:
         print(str(e))

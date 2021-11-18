@@ -7,10 +7,10 @@ def test_version():
 
 
 def test_conversion():
-    actual = convert(read_fixture("junit_report.xml"))
+    actual = convert(read_fixture("junit_report.xml"), indent=4)
     assert actual == read_fixture("sonar_generic.xml")
 
 
 def test_conversion2():
-    actual = convert(read_fixture("junit_report2.xml"))
+    actual = convert(read_fixture("junit_report2.xml"), indent=4)
     assert actual == read_fixture("sonar_generic2.xml")

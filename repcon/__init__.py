@@ -56,7 +56,7 @@ def to_test_result(elm: ET.Element) -> GenericTestResult:
     return result
 
 
-def convert(input: str):
+def convert(input: str, indent: int):
     root = ET.fromstring(input)
     generic_cases: List[GenericTestResult] = []
     for suite in root.findall("testsuite"):
@@ -72,4 +72,8 @@ def convert(input: str):
         for case in cases:  # type: ignore
             file_node.append(case.to_node())
         generic_root.append(file_node)
-    return minidom.parseString(ET.tostring(generic_root)).toprettyxml(encoding="utf-8", indent="    ").decode("utf-8")
+    return (
+        minidom.parseString(ET.tostring(generic_root))
+        .toprettyxml(encoding="utf-8", indent=" " * indent)
+        .decode("utf-8")
+    )
