@@ -1,7 +1,6 @@
 import argparse
 import sys
-from dataclasses import dataclass
-from typing import List, TextIO
+from typing import List
 
 from repcon import convert
 
