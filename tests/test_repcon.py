@@ -5,7 +5,7 @@ from tests.helper import read_fixture
 
 
 def test_version():
-    assert __version__ == "0.0.5"
+    assert __version__ == "0.0.6"
 
 
 @pytest.mark.parametrize(
