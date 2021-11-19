@@ -16,6 +16,15 @@ class NonExitArgumentParser(argparse.ArgumentParser):
         raise argparse.ArgumentError(argument=None, message=message)
 
 
+class IndentAction(argparse._StoreAction):
+    """Action for "--indent" option."""
+
+    def __call__(self, parser, namespace, values, option_string=None):
+        if values < 0:
+            raise argparse.ArgumentError(self, "Indentation level must not be negative integer.")
+        super(IndentAction, self).__call__(parser, namespace, values, option_string)
+
+
 def _print_version():
     from . import __version__
 
@@ -26,7 +35,9 @@ def _main(argv: List[str]) -> int:
     parser = NonExitArgumentParser(prog="repcon", description="Desc", add_help=False)
     parser.add_argument("-h", "--help", action="store_true", help="Show this help message and exit.")
     parser.add_argument("-V", "--version", action="store_true", help="Show the version of %(prog)s.")
-    parser.add_argument("-i", "--indent", type=int, default=4, metavar="N", help="Indentation level. Default: 4")
+    parser.add_argument(
+        "-i", "--indent", type=int, default=4, metavar="N", help="Indentation level. Default: 4", action=IndentAction
+    )
     parser.add_argument("infile", nargs="?", type=argparse.FileType("rt", encoding="utf-8"), default=sys.stdin)
     parser.add_argument(
         "-o",
