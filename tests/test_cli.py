@@ -42,6 +42,23 @@ def test_both_infile_and_outfile(tmp_path: Path, capsys):
     assert err == ""
 
 
+def test_success_with_indent_0(capsys):
+    infile = Path("tests/fixtures/junit_report2.xml")
+    ret = cli._main(["--indent", "0", str(infile)])
+    out, err = capsys.readouterr()
+    assert ret == 0
+    assert out != ""
+    assert err == ""
+
+
+def test_error_when_indent_option_is_negative(capsys):
+    ret = cli._main(["--indent", "-1"])
+    out, err = capsys.readouterr()
+    assert ret == 2
+    assert out == "argument -i/--indent: Indentation level must not be negative integer.\n"
+    assert err == ""
+
+
 def test_unknown_arguments(capsys):
     ret = cli._main(["--foo", "--bar"])
     out, err = capsys.readouterr()
