@@ -60,7 +60,7 @@ jobs:
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: Download test results
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: test-result-ubuntu-20.04-py3.6
       - name: SonarCloud Scan
